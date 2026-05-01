@@ -1,7 +1,6 @@
 #include "ReportService.h"
 #include "Equipo.h"
-#include "Excepciones.h"
-
+#include "Excepciones.h"   // 🔥 ESTO FALTABA
 #include <fstream>
 
 void ReportService::guardarReporte(const std::string& nombreArchivo,
@@ -13,9 +12,10 @@ void ReportService::guardarReporte(const std::string& nombreArchivo,
         throw ArchivoException("No se pudo abrir el archivo");
     }
 
-    for (const auto* e : equipos) {
-        file << e->id()
-             << " " << e->calcularPrioridad()
+    for (const auto& e : equipos) {
+        file << e->getId()
+             << " "
+             << e->calcularPrioridad()
              << "\n";
     }
 }

@@ -8,7 +8,7 @@
 Equipo::Equipo(std::string id, int criticidad, double estado)
     : id_(std::move(id)), criticidad_(criticidad), estado_(estado), tiempoInactivo_(0) {}
 
-std::string Equipo::id() const {
+std::string Equipo::getId() const {
     return id_;
 }
 

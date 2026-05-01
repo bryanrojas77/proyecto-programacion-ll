@@ -23,7 +23,7 @@ public:
     Equipo(std::string id, int criticidad, double estado);
     virtual ~Equipo() = default;
 
-    std::string id() const;
+    std::string getId() const;
 
     void agregarIncidencia(std::unique_ptr<Incidencia> inc);
 

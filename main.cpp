@@ -1,64 +1,83 @@
 #include <iostream>
-#include <memory>
 #include <vector>
-#include "EquipoNormal.h"
+#include <fstream>
+#include <sstream>
+
+
+#include "Equipo.h"
 #include "EquipoCritico.h"
-#include "Incidencia.h"
+#include "EquipoNormal.h"
 #include "Ordenamiento.h"
 #include "Busqueda.h"
 #include "Simulador.h"
+#include "ReportService.h"
+#include "Excepciones.h"
+
+using namespace std;
 
 int main() {
     try {
-        std::cout << "=== INICIO SISTEMA ===\n";
-        std::vector<std::unique_ptr<Equipo>> equipos;
+        cout << "=== INICIO SISTEMA ===" << endl;
 
-        auto eq1 = std::make_unique<EquipoCritico>("EQ-1", 80.0);
-        eq1->agregarIncidencia(std::make_unique<Incidencia>("Falla", 5));
-        eq1->agregarIncidencia(std::make_unique<Incidencia>("Error", 3));
+        vector<Equipo*> equipos;
 
-        auto eq2 = std::make_unique<EquipoNormal>("EQ-2", 90.0);
-        eq2->agregarIncidencia(std::make_unique<Incidencia>("Warning", 2));
+        ifstream file("equipos.txt");
 
-        equipos.push_back(std::move(eq1));
-        equipos.push_back(std::move(eq2));
-
-        std::cout << "Datos cargados\n";
-
-        std::vector<Equipo*> vista;
-
-        for (auto& e : equipos) {
-            vista.push_back(e.get());
+        if (!file.is_open()) {
+            throw ArchivoException("No se pudo abrir equipos.txt");
         }
 
-        Ordenamiento::quickSortPorPrioridad(vista, 0, vista.size() - 1);
+        string line;
 
-        std::cout << "\n--- Equipos priorizados ---\n";
-        for (auto* e : vista) {
-            std::cout << e->id()
-                      << " -> " << e->calcularPrioridad()
-                      << std::endl;
+        while (getline(file, line)) {
+            stringstream ss(line);
+
+            string id, tipo;
+            double estado;
+
+            getline(ss, id, ',');
+            getline(ss, tipo, ',');
+            ss >> estado;
+
+            if (tipo == "critico") {
+                equipos.push_back(new EquipoCritico(id, estado)); // criticidad ya la define la clase
+            } else {
+                equipos.push_back(new EquipoNormal(id, estado));
+            }
         }
 
-        Ordenamiento::quickSortPorId(vista, 0, vista.size() - 1);
+        file.close();
 
-        Equipo* encontrado = Busqueda::busquedaBinariaPorId(vista, "EQ-1");
+        cout << "Datos cargados" << endl;
+
+        Ordenamiento::quickSortId(equipos, 0, equipos.size() - 1);
+
+        Equipo* encontrado = Busqueda::busquedaBinariaPorId(equipos, "EQ-1");
 
         if (encontrado) {
-            std::cout << "\nBusqueda OK: "
-                      << encontrado->id()
-                      << std::endl;
+            cout << "Busqueda OK: " << encontrado->getId() << endl;
         }
 
-        std::cout << "\n=== INICIANDO SIMULACION ===\n";
+        cout << "\n=== INICIANDO SIMULACION ===" << endl;
 
-        Simulador::ejecutarSimulacion(vista, 5);
+        Simulador::ejecutarSimulacion(equipos, 5);
 
-        std::cout << "\n=== FIN DEL SISTEMA ===\n";
-    }
-    catch (const std::exception& e) {
-        std::cout << "\nERROR GLOBAL: "
-                  << e.what() << std::endl;
+        ReportService::guardarReporte("reporte.txt", equipos);
+
+        cout << "\nReporte generado correctamente" << endl;
+
+        for (auto e : equipos) {
+            delete e;
+        }
+
+        cout << "\n=== FIN DEL SISTEMA ===" << endl;
+
+    } catch (const ArchivoException& e) {
+        cout << "Error de archivo: " << e.what() << endl;
+    } catch (const SimulacionException& e) {
+        cout << "Error de simulacion: " << e.what() << endl;
+    } catch (const exception& e) {
+        cout << "Error inesperado: " << e.what() << endl;
     }
 
     return 0;
