@@ -1,27 +1,21 @@
 #include "ReportService.h"
 #include "Equipo.h"
+#include "Excepciones.h"
 
 #include <fstream>
-#include <stdexcept>
 
-void ReportService::generar(
-    int dia,
-    const std::vector<Equipo*>& equipos
-) const {
+void ReportService::guardarReporte(const std::string& nombreArchivo,
+                                   const std::vector<Equipo*>& equipos) {
 
-    std::ofstream file("reporte.txt", std::ios::app);
+    std::ofstream file(nombreArchivo);
 
-    if (!file)
-        throw std::runtime_error("No se pudo abrir reporte.txt");
-
-    file << "Dia " << dia << "\n";
-
-    for (const auto* eq : equipos) {
-        file << eq->id()
-             << " prioridad: "
-             << eq->calcularPrioridad()
-             << "\n";
+    if (!file) {
+        throw ArchivoException("No se pudo abrir el archivo");
     }
 
-    file << "----------------------\n";
+    for (const auto* e : equipos) {
+        file << e->id()
+             << " " << e->calcularPrioridad()
+             << "\n";
+    }
 }

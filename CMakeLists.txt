@@ -28,4 +28,6 @@ add_executable(proyecto_programacion_ll main.cpp
         Busqueda.h
         Busqueda.cpp
         Ordenamiento.h
+        Simulador.cpp
+        Simulador.h
 )

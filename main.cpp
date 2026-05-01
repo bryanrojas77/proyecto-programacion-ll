@@ -1,51 +1,65 @@
-#include "EquipoCritico.h"
-#include "EquipoNormal.h"
-#include "Incidencia.h"
-#include "MantenimientoBase.h"
-#include "MantenimientoPreventivo.h"
-#include "MantenimientoCorrectivo.h"
-
+#include <iostream>
 #include <memory>
 #include <vector>
-#include <iostream>
+#include "EquipoNormal.h"
+#include "EquipoCritico.h"
+#include "Incidencia.h"
+#include "Ordenamiento.h"
+#include "Busqueda.h"
+#include "Simulador.h"
 
 int main() {
+    try {
+        std::cout << "=== INICIO SISTEMA ===\n";
+        std::vector<std::unique_ptr<Equipo>> equipos;
 
-    std::vector<std::unique_ptr<Equipo>> equipos;
+        auto eq1 = std::make_unique<EquipoCritico>("EQ-1", 80.0);
+        eq1->agregarIncidencia(std::make_unique<Incidencia>("Falla", 5));
+        eq1->agregarIncidencia(std::make_unique<Incidencia>("Error", 3));
 
-    equipos.push_back(std::make_unique<EquipoCritico>("EQ-1", 80));
-    equipos.push_back(std::make_unique<EquipoNormal>("EQ-2", 90));
+        auto eq2 = std::make_unique<EquipoNormal>("EQ-2", 90.0);
+        eq2->agregarIncidencia(std::make_unique<Incidencia>("Warning", 2));
 
-    equipos[0]->agregarIncidencia(std::make_unique<Incidencia>("Falla", 5));
-    equipos[1]->agregarIncidencia(std::make_unique<Incidencia>("Error", 2));
+        equipos.push_back(std::move(eq1));
+        equipos.push_back(std::move(eq2));
 
-    for (const auto& eq : equipos) {
-        std::cout << eq->id()
-                  << " prioridad: "
-                  << eq->calcularPrioridad()
-                  << std::endl;
+        std::cout << "Datos cargados\n";
+
+        std::vector<Equipo*> vista;
+
+        for (auto& e : equipos) {
+            vista.push_back(e.get());
+        }
+
+        Ordenamiento::quickSortPorPrioridad(vista, 0, vista.size() - 1);
+
+        std::cout << "\n--- Equipos priorizados ---\n";
+        for (auto* e : vista) {
+            std::cout << e->id()
+                      << " -> " << e->calcularPrioridad()
+                      << std::endl;
+        }
+
+        Ordenamiento::quickSortPorId(vista, 0, vista.size() - 1);
+
+        Equipo* encontrado = Busqueda::busquedaBinariaPorId(vista, "EQ-1");
+
+        if (encontrado) {
+            std::cout << "\nBusqueda OK: "
+                      << encontrado->id()
+                      << std::endl;
+        }
+
+        std::cout << "\n=== INICIANDO SIMULACION ===\n";
+
+        Simulador::ejecutarSimulacion(vista, 5);
+
+        std::cout << "\n=== FIN DEL SISTEMA ===\n";
     }
-    std::cout << "\n--- Probando Decorator ---\n";
+    catch (const std::exception& e) {
+        std::cout << "\nERROR GLOBAL: "
+                  << e.what() << std::endl;
+    }
 
-    Equipo* eq = equipos[0].get();
-
-    std::cout << "Antes mantenimiento: "
-              << eq->calcularPrioridad() << std::endl;
-
-    std::unique_ptr<Mantenimiento> mantenimiento =
-        std::make_unique<MantenimientoBase>();
-
-    mantenimiento = std::make_unique<MantenimientoPreventivo>(
-        std::move(mantenimiento)
-    );
-
-    mantenimiento = std::make_unique<MantenimientoCorrectivo>(
-        std::move(mantenimiento)
-    );
-
-    mantenimiento->aplicar(*eq);
-
-    std::cout << "Despues mantenimiento: "
-              << eq->calcularPrioridad() << std::endl;
     return 0;
 }

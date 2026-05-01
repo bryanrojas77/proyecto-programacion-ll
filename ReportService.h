@@ -7,11 +7,13 @@
 
 #include <vector>
 #include <string>
+
 class Equipo;
 
-class ReportService{
+class ReportService {
 public:
-    void generar(int dia, const std::vector<Equipo*>& equipos) const;
+    static void guardarReporte(const std::string& nombreArchivo,
+                               const std::vector<Equipo*>& equipos);
 };
 
 #endif

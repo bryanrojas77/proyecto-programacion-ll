@@ -10,8 +10,8 @@
 class EquipoNormal : public Equipo {
 public:
     EquipoNormal(std::string id, double estado);
+
     double calcularPrioridad() const override;
 };
-
 
 #endif //PROYECTO_PROGRAMACION_LL_EQUIPONORMAL_H

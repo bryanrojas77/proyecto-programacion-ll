@@ -5,8 +5,8 @@
 #include "EquipoNormal.h"
 
 EquipoNormal::EquipoNormal(std::string id, double estado)
-    : Equipo(std::move(id), estado) {}
+    : Equipo(std::move(id), 5, estado) {}
 
 double EquipoNormal::calcularPrioridad() const {
-    return 5 + totalIncidencias() * 0.3 + tiempoInactivo_ * 0.2;
+    return criticidad_ * (100 - estado_);
 }

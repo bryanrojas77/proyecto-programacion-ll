@@ -5,31 +5,31 @@
 #ifndef PROYECTO_PROGRAMACION_LL_EQUIPO_H
 #define PROYECTO_PROGRAMACION_LL_EQUIPO_H
 
+#include "Incidencia.h"
+#include <string>
 #include <vector>
 #include <memory>
-#include <string>
 
-class Incidencia;
 
 class Equipo {
 protected:
     std::string id_;
+    int criticidad_;
     double estado_;
     int tiempoInactivo_;
-
     std::vector<std::unique_ptr<Incidencia>> incidencias_;
 
 public:
     Equipo(std::string id, int criticidad, double estado);
-    virtual ~Equipo();
+    virtual ~Equipo() = default;
 
-    virtual double calcularPrioridad() const;
+    std::string id() const;
 
-    void degradar();
     void agregarIncidencia(std::unique_ptr<Incidencia> inc);
 
-    const std::string& id() const;
-    int totalIncidencias() const;
+    virtual double calcularPrioridad() const = 0;
+
+    void degradar();
 };
 
 #endif //PROYECTO_PROGRAMACION_LL_EQUIPO_H

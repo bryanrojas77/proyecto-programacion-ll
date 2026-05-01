@@ -4,12 +4,8 @@
 
 #include "Incidencia.h"
 
-Incidencia::Incidencia(std::string tipo, int sev)
-    : tipo_(std::move(tipo)), severidad_(sev), equipo_(nullptr) {}
-
-void Incidencia::asignarEquipo(Equipo* eq) {
-    equipo_ = eq;
-}
+Incidencia::Incidencia(std::string tipo, int severidad)
+    : tipo_(std::move(tipo)), severidad_(severidad) {}
 
 int Incidencia::severidad() const {
     return severidad_;

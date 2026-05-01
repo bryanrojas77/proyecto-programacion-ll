@@ -2,42 +2,17 @@
 #define PROYECTO_PROGRAMACION_LL_EXCEPCIONES_H
 
 #include <stdexcept>
-#include <string>
 
-class FileException : public std::exception {
-private:
-    std::string mensaje_;
+class ArchivoException : public std::runtime_error {
 public:
-    explicit FileException(const std::string& mensaje)
-        : mensaje_("Error de archivo: " + mensaje) {}
-
-    const char* what() const noexcept override {
-        return mensaje_.c_str();
-    }
+    explicit ArchivoException(const std::string& msg)
+        : std::runtime_error(msg) {}
 };
 
-class ValidationException : public std::exception {
-private:
-    std::string mensaje_;
+class SimulacionException : public std::runtime_error {
 public:
-    explicit ValidationException(const std::string& mensaje)
-        : mensaje_("Error de validacion: " + mensaje) {}
-
-    const char* what() const noexcept override {
-        return mensaje_.c_str();
-    }
-};
-
-class SimulacionException : public std::exception {
-private:
-    std::string mensaje_;
-public:
-    explicit SimulacionException(const std::string& mensaje)
-        : mensaje_("Error de simulacion: " + mensaje) {}
-
-    const char* what() const noexcept override {
-        return mensaje_.c_str();
-    }
+    explicit SimulacionException(const std::string& msg)
+        : std::runtime_error(msg) {}
 };
 
 #endif //PROYECTO_PROGRAMACION_LL_EXCEPCIONES_H
