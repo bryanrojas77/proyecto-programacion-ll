@@ -1,35 +1,17 @@
-#ifndef PROYECTO_PROGRAMACION_LL_REPORTSERVICE_H
-#define PROYECTO_PROGRAMACION_LL_REPORTSERVICE_H
+//
+// Created by eXtreme PC on 1/5/2026.
+//
 
-#include <string>
+#ifndef REPORTSERVICE_H
+#define REPORTSERVICE_H
+
 #include <vector>
-#include "Equipo.h"
-#include "Excepciones.h"
+#include <string>
+class Equipo;
 
-class ReportService {
-private:
-    std::string carpetaReportes_;
-
+class ReportService{
 public:
-    explicit ReportService(const std::string& carpeta = "reportes");
-
-//Reporte diario
-    void generarReporteDiario(
-        int dia,
-        const std::vector<Equipo*>& atendidos,
-        const std::vector<Equipo*>& pendientes,
-        double riesgoGlobal
-    );
-
-//Reporte 30 dias
-    void generarReporteFinal(
-        const std::vector<Equipo*>& equipos,
-        int totalDias
-    );
-
-private:
-    std::string obtenerNivelRiesgo(double riesgo) const;
-    void crearCarpetaSiNoExiste() const;
+    void generar(int dia, const std::vector<Equipo*>& equipos) const;
 };
 
-#endif //PROYECTO_PROGRAMACION_LL_REPORTSERVICE_H
+#endif

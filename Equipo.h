@@ -20,10 +20,10 @@ protected:
     std::vector<std::unique_ptr<Incidencia>> incidencias_;
 
 public:
-    Equipo(std::string id, double estado);
+    Equipo(std::string id, int criticidad, double estado);
     virtual ~Equipo();
 
-    virtual double calcularPrioridad() const = 0;
+    virtual double calcularPrioridad() const;
 
     void degradar();
     void agregarIncidencia(std::unique_ptr<Incidencia> inc);

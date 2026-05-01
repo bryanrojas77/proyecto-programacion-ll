@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.2)
+cmake_minimum_required(VERSION 4.1.2)
 project(proyecto_programacion_ll)
 
 set(CMAKE_CXX_STANDARD 26)
@@ -20,4 +20,12 @@ add_executable(proyecto_programacion_ll main.cpp
         MantenimientoPreventivo.cpp
         MantenimientoPreventivo.h
         MantenimientoCorrectivo.cpp
-        MantenimientoCorrectivo.h)
+        MantenimientoCorrectivo.h
+        Strategy.h
+        Exceptions.h
+        Excepciones.h
+        ReportService.h
+        ReportService.cpp
+        Simulador.h
+        Simulador.cpp
+)
