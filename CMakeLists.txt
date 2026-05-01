@@ -28,4 +28,6 @@ add_executable(proyecto_programacion_ll main.cpp
         ReportService.cpp
         Simulador.h
         Simulador.cpp
+        Ordenamiento.h
+        Ordenamiento.cpp
 )
