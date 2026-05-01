@@ -8,6 +8,8 @@
 Equipo::Equipo(std::string id, double estado)
     : id_(std::move(id)), estado_(estado), tiempoInactivo_(0) {}
 
+Equipo::~Equipo() = default;
+
 void Equipo::degradar() {
     estado_ -= 1;
     tiempoInactivo_++;

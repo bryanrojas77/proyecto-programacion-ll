@@ -16,4 +16,8 @@ add_executable(proyecto_programacion_ll main.cpp
         MantenimientoBase.cpp
         MantenimientoBase.h
         MantenimientoDecorator.cpp
-        MantenimientoDecorator.h)
+        MantenimientoDecorator.h
+        MantenimientoPreventivo.cpp
+        MantenimientoPreventivo.h
+        MantenimientoCorrectivo.cpp
+        MantenimientoCorrectivo.h)

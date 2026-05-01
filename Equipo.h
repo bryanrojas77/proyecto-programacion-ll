@@ -21,7 +21,7 @@ protected:
 
 public:
     Equipo(std::string id, double estado);
-    virtual ~Equipo() = default;
+    virtual ~Equipo();
 
     virtual double calcularPrioridad() const = 0;
 
