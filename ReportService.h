@@ -12,8 +12,7 @@ class Equipo;
 
 class ReportService {
 public:
-    static void guardarReporte(const std::string& nombreArchivo,
-                               const std::vector<Equipo*>& equipos);
+    static void guardarReporte(const std::string& nombre, const std::vector<Equipo*>& equipos);
 };
 
 #endif
