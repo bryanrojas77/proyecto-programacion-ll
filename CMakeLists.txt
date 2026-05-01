@@ -24,8 +24,8 @@ add_executable(proyecto_programacion_ll main.cpp
         Excepciones.h
         ReportService.h
         ReportService.cpp
-        Ordenamiento.h
         Ordenamiento.cpp
         Busqueda.h
         Busqueda.cpp
+        Ordenamiento.h
 )
