@@ -13,7 +13,6 @@ private:
 public:
     explicit ReportService(const std::string& carpeta = "reportes");
 
-    // diario
     void generarReporteDiario(
         int dia,
         const std::vector<Equipo*>& atendidos,
@@ -21,7 +20,6 @@ public:
         double riesgoGlobal
     );
 
-    // 30 dias
     void generarReporteFinal(
         const std::vector<Equipo*>& equipos,
         int totalDias
