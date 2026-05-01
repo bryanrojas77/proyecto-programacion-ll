@@ -5,8 +5,7 @@
 #include "Equipo.h"
 #include "Incidencia.h"
 
-Equipo::Equipo(std::string id, double estado)
-    : id_(std::move(id)), estado_(estado), tiempoInactivo_(0) {}
+Equipo::Equipo(std::string id, int criticidad, double estado) : id_(std::move(id)), criticidad_(criticidad), estado_(estado), tiempoInactivo_(0) {}
 
 Equipo::~Equipo() = default;
 

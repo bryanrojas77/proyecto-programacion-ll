@@ -11,7 +11,7 @@ class Equipo;
 
 class ReportService{
 public:
-    void generar(int dia, const std::vector<Equipo*>& equipos);
+    void generar(int dia, const std::vector<Equipo*>& equipos) const;
 };
 
 #endif

@@ -23,6 +23,9 @@ add_executable(proyecto_programacion_ll main.cpp
         MantenimientoCorrectivo.h
         Strategy.h
         Exceptions.h
+        Excepciones.h
         ReportService.h
+        ReportService.cpp
         Simulador.h
+        Simulador.cpp
 )
