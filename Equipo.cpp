@@ -1,13 +1,15 @@
 #include "Equipo.h"
 
-Equipo::Equipo(std::string id, int criticidad, double estado, IEstrategiaPrioridad* est)
-    : id_(std::move(id)),
+using namespace std;
+
+Equipo::Equipo(string id, int criticidad, double estado, IEstrategiaPrioridad* est)
+    : id_(move(id)),
       criticidad_(criticidad),
       estado_(estado),
       tiempoInactivo_(0),
       estrategia_(est) {}
 
-std::string Equipo::getId() const {
+string Equipo::getId() const {
     return id_;
 }
 
@@ -49,8 +51,8 @@ int Equipo::getTotalSeveridad() const {
     return total;
 }
 
-void Equipo::agregarIncidencia(std::unique_ptr<Incidencia> inc) {
-    incidencias_.push_back(std::move(inc));
+void Equipo::agregarIncidencia(unique_ptr<Incidencia> inc) {
+    incidencias_.push_back(move(inc));
 }
 
 double Equipo::calcularPrioridad() const {

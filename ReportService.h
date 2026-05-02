@@ -1,6 +1,3 @@
-//
-// Created by eXtreme PC on 1/5/2026.
-//
 
 #ifndef REPORTSERVICE_H
 #define REPORTSERVICE_H

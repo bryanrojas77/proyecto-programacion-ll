@@ -1,9 +1,7 @@
-//
-// Created by kathy on 30/4/2026.
-//
-
 #include "MantenimientoCorrectivo.h"
 #include "Equipo.h"
+
+using namespace std;
 
 void MantenimientoCorrectivo::aplicar(Equipo& eq) {
     MantenimientoDecorator::aplicar(eq);

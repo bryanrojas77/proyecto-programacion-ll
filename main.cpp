@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include <filesystem>
+#include <cstdlib>
 
 #include "Equipo.h"
 #include "EquipoCritico.h"
@@ -11,6 +12,7 @@
 #include "EstrategiaPrioridad.h"
 #include "Simulador.h"
 #include "Ordenamiento.h"
+#include "Busqueda.h"
 #include "ReportService.h"
 
 using namespace std;
@@ -51,6 +53,13 @@ int main() {
 
     cout << "Datos cargados: " << raw.size() << " equipos" << endl;
 
+    Ordenamiento::ordenar(raw);
+
+    Equipo* encontrado = Busqueda::busquedaBinariaPorId(raw, "EQ-10");
+    if (encontrado) {
+        cout << "Busqueda OK: " << encontrado->getId() << endl;
+    }
+
     filesystem::create_directory("reportes");
 
     Simulador simulador;
@@ -81,7 +90,6 @@ int main() {
         cout << "Riesgo: " << riesgo << endl;
 
         string ruta = "reportes/reporte_dia_" + to_string(dia) + ".txt";
-
         ReportService::guardarReporte(ruta, raw, dia, backlog, riesgo);
 
         cout << endl;

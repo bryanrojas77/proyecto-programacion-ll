@@ -1,14 +1,16 @@
 #include "ReportService.h"
 #include <fstream>
 
+using namespace std;
+
 void ReportService::guardarReporte(
-        const std::string& nombreArchivo,
-        const std::vector<Equipo*>& equipos,
+        const string& nombreArchivo,
+        const vector<Equipo*>& equipos,
         int dia,
         int backlog,
-        const std::string& riesgo
+        const string& riesgo
 ) {
-    std::ofstream file(nombreArchivo);
+    ofstream file(nombreArchivo);
 
     file << "Dia: " << dia << "\n";
     file << "Top 3:\n";

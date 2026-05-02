@@ -1,7 +1,9 @@
 #include "Busqueda.h"
 #include "Equipo.h"
 
-Equipo* Busqueda::busquedaBinariaPorId(const std::vector<Equipo*>& arr, const std::string& id) {
+using namespace std;
+
+Equipo* Busqueda::busquedaBinariaPorId(const vector<Equipo*>& arr, const string& id) {
     int left = 0;
     int right = (int)arr.size() - 1;
 

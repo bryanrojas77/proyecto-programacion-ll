@@ -1,9 +1,7 @@
-//
-// Created by kathy on 1/5/2026.
-//
-
 #include "EstrategiaPrioridad.h"
 #include "Equipo.h"
+
+using namespace std;
 
 double EstrategiaPrioridad::calcular(const Equipo& e) const {
     return (e.getCriticidad() * 0.5)

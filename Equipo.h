@@ -1,7 +1,3 @@
-//
-// Created by kathy on 30/4/2026.
-//
-
 #ifndef PROYECTO_PROGRAMACION_LL_EQUIPO_H
 #define PROYECTO_PROGRAMACION_LL_EQUIPO_H
 #include "Incidencia.h"

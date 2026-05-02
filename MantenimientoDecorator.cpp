@@ -1,11 +1,9 @@
-//
-// Created by kathy on 30/4/2026.
-//
-
 #include "MantenimientoDecorator.h"
 
-MantenimientoDecorator::MantenimientoDecorator(std::unique_ptr<Mantenimiento> base)
-    : wrappee_(std::move(base)) {}
+using namespace std;
+
+MantenimientoDecorator::MantenimientoDecorator(unique_ptr<Mantenimiento> base)
+    : wrappee_(move(base)) {}
 
 void MantenimientoDecorator::aplicar(Equipo& eq) {
     if (wrappee_)
