@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 #include <filesystem>
-#include <cstdlib>
+
 
 #include "Equipo.h"
 #include "EquipoCritico.h"
