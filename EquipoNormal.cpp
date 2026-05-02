@@ -4,9 +4,5 @@
 
 #include "EquipoNormal.h"
 
-EquipoNormal::EquipoNormal(std::string id, double estado)
-    : Equipo(std::move(id), 5, estado) {}
-
-double EquipoNormal::calcularPrioridad() const {
-    return criticidad_ * (100 - estado_);
-}
+EquipoNormal::EquipoNormal(std::string id, double estado, IEstrategiaPrioridad* est)
+    : Equipo(std::move(id), 5, estado, est) {}

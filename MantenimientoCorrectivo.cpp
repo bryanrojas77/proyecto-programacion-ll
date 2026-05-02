@@ -7,5 +7,8 @@
 
 void MantenimientoCorrectivo::aplicar(Equipo& eq) {
     MantenimientoDecorator::aplicar(eq);
-    eq.degradar();
+
+    for (int i = 0; i < 5; i++) {
+        eq.degradar();
+    }
 }

@@ -30,4 +30,7 @@ add_executable(proyecto_programacion_ll main.cpp
         Ordenamiento.h
         Simulador.cpp
         Simulador.h
+        IEstrategiaPrioridad.h
+        EstrategiaPrioridad.cpp
+        EstrategiaPrioridad.h
 )

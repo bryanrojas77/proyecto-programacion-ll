@@ -7,12 +7,18 @@
 
 #include <vector>
 #include <string>
-
-class Equipo;
+#include "Equipo.h"
 
 class ReportService {
 public:
-    static void guardarReporte(const std::string& nombre, const std::vector<Equipo*>& equipos);
+    static void guardarReporte(
+            const std::string& nombreArchivo,
+            const std::vector<Equipo*>& equipos,
+            int dia,
+            int backlog,
+            const std::string& riesgo
+    );
 };
+
 
 #endif

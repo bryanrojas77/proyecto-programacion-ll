@@ -1,20 +1,25 @@
 #include "ReportService.h"
-#include "Equipo.h"
-#include "Excepciones.h"
 #include <fstream>
 
-using namespace std;
+void ReportService::guardarReporte(
+        const std::string& nombreArchivo,
+        const std::vector<Equipo*>& equipos,
+        int dia,
+        int backlog,
+        const std::string& riesgo
+) {
+    std::ofstream file(nombreArchivo);
 
-void ReportService::guardarReporte(const string& nombre, const vector<Equipo*>& equipos) {
-    ofstream file(nombre);
+    file << "Dia: " << dia << "\n";
+    file << "Top 3:\n";
 
-    if (!file.is_open()) {
-        throw ArchivoException("No se pudo crear el archivo de reporte");
+    for (int i = 0; i < 3 && i < equipos.size(); i++) {
+        file << equipos[i]->getId() << " -> "
+             << equipos[i]->calcularPrioridad() << "\n";
     }
 
-    for (const auto& e : equipos) {
-        file << e->getId() << " - Prioridad: " << e->calcularPrioridad() << endl;
-    }
+    file << "Backlog: " << backlog << "\n";
+    file << "Riesgo: " << riesgo << "\n";
 
     file.close();
 }

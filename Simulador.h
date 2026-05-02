@@ -6,12 +6,11 @@
 #define PROYECTO_PROGRAMACION_LL_SIMULADOR_H
 
 #include <vector>
-
-class Equipo;
+#include "Equipo.h"
 
 class Simulador {
 public:
-    static void ejecutarSimulacion(std::vector<Equipo*>& equipos, int dias);
+    void ejecutarSimulacion(std::vector<Equipo*>& equipos, int dias);
 };
 
 

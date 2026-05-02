@@ -6,7 +6,7 @@
 
 class Ordenamiento {
 public:
-    static void quickSortId(std::vector<Equipo*>& arr, int low, int high);
-    static void quickSortPrioridad(std::vector<Equipo*>& arr, int low, int high);
+    static void ordenar(std::vector<Equipo*>& equipos);
 };
+
 #endif
