@@ -6,9 +6,10 @@
 #define PROYECTO_PROGRAMACION_LL_EQUIPONORMAL_H
 
 #include "Equipo.h"
+using namespace std;
 
 class EquipoNormal : public Equipo {
 public:
-    EquipoNormal(std::string id, double estado, IEstrategiaPrioridad* est);
+    EquipoNormal(string id, double estado, IEstrategiaPrioridad* est);
 };
-#endif //PROYECTO_PROGRAMACION_LL_EQUIPONORMAL_H
+#endif

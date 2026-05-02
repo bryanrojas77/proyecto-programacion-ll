@@ -3,12 +3,13 @@
 
 #include <vector>
 #include <string>
+using namespace std;
 
 class Equipo;
 
 class Busqueda {
 public:
-    static Equipo* busquedaBinariaPorId(const std::vector<Equipo*>& arr, const std::string& id);
+    static Equipo* busquedaBinariaPorId(const vector<Equipo*>& arr, const string& id);
 };
 
 #endif

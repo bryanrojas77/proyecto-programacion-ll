@@ -3,10 +3,11 @@
 #define PROYECTO_PROGRAMACION_LL_EQUIPOCRITICO_H
 
 #include "Equipo.h"
+using namespace std;
 
 class EquipoCritico : public Equipo {
 public:
-    EquipoCritico(std::string id, double estado, IEstrategiaPrioridad* est);
+    EquipoCritico(string id, double estado, IEstrategiaPrioridad* est);
 };
 
-#endif //PROYECTO_PROGRAMACION_LL_EQUIPOCRITICO_H
+#endif
