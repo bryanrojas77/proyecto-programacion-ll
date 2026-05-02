@@ -5,21 +5,22 @@
 #include <string>
 #include <vector>
 #include <memory>
+using namespace std;
 
 class Equipo {
 protected:
-    std::string id_;
+    string id_;
     int criticidad_;
     double estado_;
     int tiempoInactivo_;
-    std::vector<std::unique_ptr<Incidencia>> incidencias_;
+    vector<unique_ptr<Incidencia>> incidencias_;
     IEstrategiaPrioridad* estrategia_;
 
 public:
-    Equipo(std::string id, int criticidad, double estado, IEstrategiaPrioridad* est);
+    Equipo(string id, int criticidad, double estado, IEstrategiaPrioridad* est);
     virtual ~Equipo() = default;
 
-    std::string getId() const;
+    string getId() const;
 
     double getEstado() const;
     void setEstado(double e);
@@ -40,4 +41,4 @@ public:
     void degradar();
 };
 
-#endif //PROYECTO_PROGRAMACION_LL_EQUIPO_H
+#endif
