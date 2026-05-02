@@ -1,0 +1,32 @@
+[33ma45e3d0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m terminar de probar
+[33m739f904[m pruebas
+[33m66a61f4[m pruebas
+[33mfe41de3[m Parte 2 para revisión
+[33me7cc07e[m Eliminar clases `Simulador`, `IEstrategia`, `EstrategiaPrioridad`, y `FileException`, y sus referencias del proyecto (CMakeLists.txt).
+[33meb269a3[m Merge remote-tracking branch 'origin/main'
+[33mff8123b[m Clase Ordenamiento
+[33ma70916f[m Merge remote-tracking branch 'origin/main'
+[33mf228ebe[m Merge remote-tracking branch 'origin/main'
+[33m4f063b2[m Clase Ordenamiento
+[33m06cc685[m Agregar configuración de IntelliJ IDEA al repositorio (`.idea`), incluyendo ajustes de inspección, preferencias del proyecto y `.gitignore`.
+[33m7ab27cf[m Cosas cambiadas
+[33m69e34a7[m Merge remote-tracking branch 'origin/main'
+[33m17b102a[m Parte 2 casi completa
+[33m04a88e4[m Create Simulador.cpp
+[33m99517dc[m Create Simulador.h
+[33m0ee143a[m Add .gitkeep to reportes directory
+[33m9aeaf8e[m Add methods for daily and final report generation
+[33ma4a5336[m Remove comments from ReportService.h
+[33me470cf1[m Update ReportService.cpp
+[33m4643f95[m Create ReportService.cpp
+[33mc65d276[m Add ReportService class with report generation methods
+[33m5e35205[m Rename ReportService to ReportService.h
+[33m8f3a001[m Create ReportService
+[33m6d34cb8[m Add custom exception classes for error handling
+[33m0a09071[m Create Excepciones.h
+[33m44d723a[m Agregar clases `MantenimientoCorrectivo` y `MantenimientoPreventivo` con sus implementaciones, ajustes en `Equipo`, actualización de `main.cpp` y CMakeLists.txt
+[33mde389e0[m Agregar clase `MantenimientoDecorator` con su implementación y actualización de CMakeLists.txt
+[33m1014d25[m Agregar implementación inicial de las clases base y derivadas del sistema de mantenimiento (Equipo, EquipoNormal, EquipoCritico, Incidencia, Mantenimiento, MantenimientoBase) y actualización de CMakeLists.txt
+[33m9fe1fc3[m Add CMakeLists.txt, main
+[33maf5dc88[m Agregación del .gitignore
+[33mbeeb974[m Initial commit
