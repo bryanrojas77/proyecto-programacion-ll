@@ -10,5 +10,4 @@ public:
     void aplicar(Equipo& eq) override;
 };
 
-
 #endif //PROYECTO_PROGRAMACION_LL_MANTENIMIENTOBASE_H

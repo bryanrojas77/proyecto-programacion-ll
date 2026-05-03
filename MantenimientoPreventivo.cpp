@@ -1,9 +1,11 @@
 #include "MantenimientoPreventivo.h"
 #include "Equipo.h"
 
-using namespace std;
+MantenimientoPreventivo::MantenimientoPreventivo(std::unique_ptr<Mantenimiento> base)
+    : MantenimientoDecorator(std::move(base)) {}
 
 void MantenimientoPreventivo::aplicar(Equipo& eq) {
     MantenimientoDecorator::aplicar(eq);
-    eq.degradar();
+
+    eq.setEstado(eq.getEstado() + 5);
 }

@@ -1,42 +1,53 @@
 #include "Simulador.h"
 #include "MantenimientoBase.h"
-#include "MantenimientoCorrectivo.h"
 #include "MantenimientoPreventivo.h"
+#include "MantenimientoCorrectivo.h"
+#include "Ordenamiento.h"
 #include "Incidencia.h"
-#include <cstdlib>
+#include <iostream>
 #include <memory>
 
 using namespace std;
 
 void Simulador::ejecutarSimulacion(vector<Equipo*>& equipos, int dias) {
-    for (int d = 0; d < dias; d++) {
-        for (auto& e : equipos) {
-            e->incrementarInactividad();
 
-            double nuevoEstado = e->getEstado() - (rand() % 3);
-            if (nuevoEstado < 0) nuevoEstado = 0;
-            e->setEstado(nuevoEstado);
+    for (int d = 1; d <= dias; d++) {
 
-            if (rand() % 3 == 0) {
-                int sev = rand() % 10 + 1;
-                e->agregarIncidencia(make_unique<Incidencia>("falla", sev));
+        cout << "\n--- Dia " << d << " ---\n";
+
+        for (auto& eq : equipos) {
+
+            int prob = rand() % 100;
+
+            if (prob < 30) {
+                int severidad = (rand() % 5) + 1;
+
+                eq->agregarIncidencia(
+                    make_unique<Incidencia>(severidad)
+                );
             }
 
-            if (e->calcularPrioridad() > 80) {
-                unique_ptr<Mantenimiento> mantenimiento;
+            unique_ptr<Mantenimiento> mantenimiento;
 
-                if (rand() % 2 == 0) {
-                    mantenimiento = make_unique<MantenimientoCorrectivo>(
+            if (eq->getEstado() < 30) {
+                mantenimiento = make_unique<MantenimientoCorrectivo>(
                         make_unique<MantenimientoBase>()
-                    );
-                } else {
-                    mantenimiento = make_unique<MantenimientoPreventivo>(
+                );
+            } else {
+                mantenimiento = make_unique<MantenimientoPreventivo>(
                         make_unique<MantenimientoBase>()
-                    );
-                }
-
-                mantenimiento->aplicar(*e);
+                );
             }
+
+            mantenimiento->aplicar(*eq);
+        }
+
+        Ordenamiento::ordenar(equipos);
+
+        cout << "Top 3:\n";
+        for (int i = 0; i < 3 && i < equipos.size(); i++) {
+            cout << equipos[i]->getId() << " -> "
+                 << equipos[i]->calcularPrioridad() << endl;
         }
     }
 }

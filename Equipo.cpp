@@ -1,13 +1,8 @@
 #include "Equipo.h"
 
-using namespace std;
-
 Equipo::Equipo(string id, int criticidad, double estado, IEstrategiaPrioridad* est)
-    : id_(move(id)),
-      criticidad_(criticidad),
-      estado_(estado),
-      tiempoInactivo_(0),
-      estrategia_(est) {}
+    : id_(id), criticidad_(criticidad), estado_(estado),
+      tiempoInactivo_(0), estrategia_(est) {}
 
 string Equipo::getId() const {
     return id_;
@@ -19,6 +14,7 @@ double Equipo::getEstado() const {
 
 void Equipo::setEstado(double e) {
     estado_ = e;
+
     if (estado_ > 100) estado_ = 100;
     if (estado_ < 0) estado_ = 0;
 }
@@ -45,8 +41,8 @@ void Equipo::limpiarIncidencias() {
 
 int Equipo::getTotalSeveridad() const {
     int total = 0;
-    for (const auto& i : incidencias_) {
-        total += i->severidad();
+    for (const auto& inc : incidencias_) {
+        total += inc->getSeveridad();
     }
     return total;
 }
@@ -60,6 +56,13 @@ double Equipo::calcularPrioridad() const {
 }
 
 void Equipo::degradar() {
-    estado_ -= 1.0;
+    double perdida = 1 + (criticidad_ * 0.5);
+
+    perdida += getTotalSeveridad() * 0.3;
+
+    estado_ -= perdida;
+
     if (estado_ < 0) estado_ = 0;
+
+    incrementarInactividad();
 }

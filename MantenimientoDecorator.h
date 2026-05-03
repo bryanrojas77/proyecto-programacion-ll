@@ -5,12 +5,14 @@
 #include "Mantenimiento.h"
 #include <memory>
 
+using namespace std;
+
 class MantenimientoDecorator : public Mantenimiento {
 protected:
-    std::unique_ptr<Mantenimiento> wrappee_;
+    unique_ptr<Mantenimiento> base;
 
 public:
-    explicit MantenimientoDecorator(std::unique_ptr<Mantenimiento> base);
+    MantenimientoDecorator(unique_ptr<Mantenimiento> base);
 
     void aplicar(Equipo& eq) override;
 };

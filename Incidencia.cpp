@@ -1,10 +1,7 @@
 #include "Incidencia.h"
 
-using namespace std;
+Incidencia::Incidencia(int sev) : severidad_(sev) {}
 
-Incidencia::Incidencia(string tipo, int severidad)
-    : tipo_(move(tipo)), severidad_(severidad) {}
-
-int Incidencia::severidad() const {
+int Incidencia::getSeveridad() const {
     return severidad_;
 }

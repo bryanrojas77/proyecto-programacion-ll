@@ -1,14 +1,12 @@
 
-
 #ifndef PROYECTO_PROGRAMACION_LL_MANTENIMIENTOCORRECTIVO_H
 #define PROYECTO_PROGRAMACION_LL_MANTENIMIENTOCORRECTIVO_H
 
 #include "MantenimientoDecorator.h"
-#include "Equipo.h"
 
 class MantenimientoCorrectivo : public MantenimientoDecorator {
 public:
-    using MantenimientoDecorator::MantenimientoDecorator;
+    MantenimientoCorrectivo(unique_ptr<Mantenimiento> base);
 
     void aplicar(Equipo& eq) override;
 };

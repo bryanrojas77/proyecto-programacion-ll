@@ -6,7 +6,7 @@
 
 class MantenimientoPreventivo : public MantenimientoDecorator {
 public:
-    using MantenimientoDecorator::MantenimientoDecorator;
+    MantenimientoPreventivo(unique_ptr<Mantenimiento> base);
 
     void aplicar(Equipo& eq) override;
 };

@@ -1,21 +1,18 @@
-//
-// Created by kathy on 30/4/2026.
-//
 
 #ifndef PROYECTO_PROGRAMACION_LL_INCIDENCIA_H
 #define PROYECTO_PROGRAMACION_LL_INCIDENCIA_H
 
 #include <string>
+using namespace std;
 
 class Incidencia {
-private:
-    std::string tipo_;
+protected:
     int severidad_;
 
 public:
-    Incidencia(std::string tipo, int severidad);
+    Incidencia(int sev);
 
-    int severidad() const;
+    int getSeveridad() const;
 };
 
 #endif //PROYECTO_PROGRAMACION_LL_INCIDENCIA_H

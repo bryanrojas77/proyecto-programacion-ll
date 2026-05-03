@@ -2,11 +2,13 @@
 #define ORDENAMIENTO_H
 
 #include <vector>
-#include "Equipo.h"
+using namespace std;
+
+class Equipo;
 
 class Ordenamiento {
 public:
-    static void ordenar(std::vector<Equipo*>& equipos);
+    static void ordenar(vector<Equipo*>& equipos);
 };
 
 #endif
